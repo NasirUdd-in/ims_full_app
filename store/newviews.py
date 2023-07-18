@@ -25,6 +25,7 @@ def supplier_list(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def supplier_detail(request, pk):
     info = Supplier.objects.get(pk=pk)
     serializer = SupplierSerializer(info)
@@ -32,6 +33,7 @@ def supplier_detail(request, pk):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def supplier_create(request):
     serializer = SupplierSerializer(data=request.data)
     if serializer.is_valid():
@@ -41,6 +43,7 @@ def supplier_create(request):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def supplier_update(request, pk):
     info = Supplier.objects.get(pk=pk)
     serializer = SupplierSerializer(info, data=request.data)
@@ -51,6 +54,7 @@ def supplier_update(request, pk):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def supplier_delete(request, pk):
     info = Supplier.objects.get(pk=pk)
     info.delete()
@@ -58,6 +62,7 @@ def supplier_delete(request, pk):
 
 # buyer start
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def buyer_list(request):
     buyer = Buyer.objects.all()
     serializer = BuyerSerializer(buyer, many=True)
@@ -65,6 +70,7 @@ def buyer_list(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def buyer_detail(request, pk):
     info = Buyer.objects.get(pk=pk)
     serializer = BuyerSerializer(info)
@@ -72,6 +78,7 @@ def buyer_detail(request, pk):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def buyer_create(request):
     serializer = BuyerSerializer(data=request.data)
     if serializer.is_valid():
@@ -81,6 +88,7 @@ def buyer_create(request):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def buyer_update(request, pk):
     inf0 = Buyer.objects.get(pk=pk)
     serializer = BuyerSerializer(info, data=request.data)
@@ -91,6 +99,7 @@ def buyer_update(request, pk):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def buyer_delete(request, pk):
     info = Buyer.objects.get(pk=pk)
     info.delete()
@@ -100,6 +109,7 @@ def buyer_delete(request, pk):
 
 # season start
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def season_list(request):
     seasons = Season.objects.all()
     serializer = SeasonSerializer(seasons, many=True)
@@ -107,6 +117,7 @@ def season_list(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def season_detail(request, pk):
     info = Season.objects.get(pk=pk)
     serializer = SeasonSerializer(info)
@@ -114,6 +125,7 @@ def season_detail(request, pk):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def season_create(request):
     serializer = SeasonSerializer(data=request.data)
     if serializer.is_valid():
@@ -123,6 +135,7 @@ def season_create(request):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def season_update(request, pk):
     info = Season.objects.get(pk=pk)
     serializer = SeasonSerializer(info, data=request.data)
@@ -133,6 +146,7 @@ def season_update(request, pk):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def season_delete(request, pk):
     info = Season.objects.get(pk=pk)
     info.delete()
@@ -141,6 +155,7 @@ def season_delete(request, pk):
 
 # drop start
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def drop_list(request):
     drop = Drop.objects.all()
     serializer = DropSerializer(drop, many=True)
@@ -148,6 +163,7 @@ def drop_list(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def drop_detail(request, pk):
     info = Drop.objects.get(pk=pk)
     serializer = SupplierSerializer(info)
@@ -155,6 +171,7 @@ def drop_detail(request, pk):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def drop_create(request):
     serializer = DropSerializer(data=request.data)
     if serializer.is_valid():
@@ -164,6 +181,7 @@ def drop_create(request):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def drop_update(request, pk):
     info = Drop.objects.get(pk=pk)
     serializer = SeasonSerializer(info, data=request.data)
@@ -174,55 +192,17 @@ def drop_update(request, pk):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def drop_delete(request, pk):
     info = Drop.objects.get(pk=pk)
     info.delete()
     return Response(status=204)
 
 
-# season start
-# @api_view(['GET'])
-# def season_list(request):
-#     seasons = Season.objects.all()
-#     serializer = SupplierSerializer(season, many=True)
-#     return Response(serializer.data)
-
-
-# @api_view(['GET'])
-# def season_detail(request, pk):
-#     info = Season.objects.get(pk=pk)
-#     serializer = SupplierSerializer(info)
-#     return Response(serializer.data)
-
-
-# @api_view(['POST'])
-# def season_create(request):
-#     serializer = SeasonSerializer(data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=201)
-#     return Response(serializer.errors, status=400)
-
-
-# @api_view(['PUT'])
-# def season_update(request, pk):
-#     info = Season.objects.get(pk=pk)
-#     serializer = SeasonSerializer(info, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data)
-#     return Response(serializer.errors, status=400)
-
-
-# @api_view(['DELETE'])
-# def season_delete(request, pk):
-#     info = Season.objects.get(pk=pk)
-#     info.delete()
-#     return Response(status=204)
-
 
 # drop start
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def product_list(request):
     product = Product.objects.all()
     serializer = ProductSerializer(product, many=True)
@@ -230,6 +210,7 @@ def product_list(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def product_detail(request, pk):
     info = Product.objects.get(pk=pk)
     serializer = ProductSerializer(info)
@@ -237,6 +218,7 @@ def product_detail(request, pk):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def product_create(request):
     serializer = ProductSerializer(data=request.data)
     if serializer.is_valid():
@@ -246,6 +228,7 @@ def product_create(request):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def product_update(request, pk):
     info = Product.objects.get(pk=pk)
     serializer = ProductSerializer(info, data=request.data)
@@ -256,6 +239,7 @@ def product_update(request, pk):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def product_delete(request, pk):
     info = Product.objects.get(pk=pk)
     info.delete()
@@ -264,6 +248,7 @@ def product_delete(request, pk):
 
 # order start
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def order_list(request):
     order = Order.objects.all()
     serializer = OrderSerializer(order, many=True)
@@ -271,6 +256,7 @@ def order_list(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def order_detail(request, pk):
     info = Order.objects.get(pk=pk)
     serializer = OrderSerializer(info)
@@ -278,6 +264,7 @@ def order_detail(request, pk):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def order_create(request):
     serializer = OrderSerializer(data=request.data)
     if serializer.is_valid():
@@ -287,6 +274,7 @@ def order_create(request):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def order_update(request, pk):
     info = Order.objects.get(pk=pk)
     serializer = OrderSerializer(info, data=request.data)
@@ -297,6 +285,7 @@ def order_update(request, pk):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def order_delete(request, pk):
     info = Order.objects.get(pk=pk)
     info.delete()
@@ -304,6 +293,7 @@ def order_delete(request, pk):
 
 # Delivery start
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def delivery_list(request):
     delivery = Delivery.objects.all()
     serializer = DeliverySerializer(delivery, many=True)
@@ -311,6 +301,7 @@ def delivery_list(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def delivery_detail(request, pk):
     info = Delivery.objects.get(pk=pk)
     serializer = DeliverySerializer(info)
@@ -318,6 +309,7 @@ def delivery_detail(request, pk):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def delivery_create(request):
     serializer = DeliverySerializer(data=request.data)
     if serializer.is_valid():
@@ -327,6 +319,7 @@ def delivery_create(request):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def delivery_update(request, pk):
     info = Delivery.objects.get(pk=pk)
     serializer = DeliverySerializer(info, data=request.data)
@@ -337,6 +330,7 @@ def delivery_update(request, pk):
 
 
 @api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
 def delivery_delete(request, pk):
     info = Delivery.objects.get(pk=pk)
     info.delete()

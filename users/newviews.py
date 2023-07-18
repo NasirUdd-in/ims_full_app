@@ -28,33 +28,33 @@ def register_view(request):
 
 
 
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def logout_view(request):
-    try:
-        refresh_token = request.data['refresh_token']
-        token = RefreshToken(refresh_token)
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# def logout_view(request):
+#     try:
+#         refresh_token = request.data['refresh_token']
+#         token = RefreshToken(refresh_token)
 
-        # Blacklist the refresh token to invalidate it
-        token.blacklist()
+#         # Blacklist the refresh token to invalidate it
+#         token.blacklist()
 
-        # Clear the user session
-        session_key = request.session.session_key
-        if session_key:
-            # Retrieve the session object
-            session = Session.objects.get(session_key=session_key)
-            session_data = session.get_decoded()
+#         # Clear the user session
+#         session_key = request.session.session_key
+#         if session_key:
+#             # Retrieve the session object
+#             session = Session.objects.get(session_key=session_key)
+#             session_data = session.get_decoded()
 
-            # Perform session cleanup actions (example: clear specific keys or all keys)
-            session_data.pop('your_key', None)  # Remove a specific key from session data
-            session_data.clear()  # Clear all keys from session data
+#             # Perform session cleanup actions (example: clear specific keys or all keys)
+#             session_data.pop('your_key', None)  # Remove a specific key from session data
+#             session_data.clear()  # Clear all keys from session data
 
-            # Save the modified session data
-            session.update({session.session_key: session_data})
+#             # Save the modified session data
+#             session.update({session.session_key: session_data})
 
-        # Perform any additional logout-related actions here
-        logout(request)
+#         # Perform any additional logout-related actions here
+#         logout(request)
 
-        return Response({"detail": "Logout successful."})
-    except TokenError:
-        return Response({"error": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST)
+#         return Response({"detail": "Logout successful."})
+#     except TokenError:
+#         return Response({"error": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST)

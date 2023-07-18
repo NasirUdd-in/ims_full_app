@@ -17,6 +17,7 @@ from django.contrib.auth import logout
 
 # supplier start
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def supplier_list(request):
     suppliers = Supplier.objects.all()
     serializer = SupplierSerializer(suppliers, many=True)

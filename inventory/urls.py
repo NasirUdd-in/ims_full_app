@@ -15,12 +15,39 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .  import views
+# from drf_yasg.views import get_schema_view
+# from drf_yasg import openapi
+from rest_framework_simplejwt import views as jwt_views
+from users.newviews import register_view, logout_view
+from rest_framework.schemas import get_schema_view
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
-from .views import dashboard
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Inventory Management System API",
+        default_version="v1",
+        description="API documentation for Your API",
+        terms_of_service="https://www.example.com/terms/",
+        contact=openapi.Contact(email="contact@example.com"),
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', dashboard, name='dashboard'),
+    path('', views.dashboard, name='dashboard'),
     path('users/', include('users.urls')),
     path('store/', include('store.urls')),
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/register/', register_view, name='register'),
+    path('api/logout/', logout_view, name='logout'),
+    
+     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path('swagger(?P<format>\.json|\.yaml)/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+   
 ]

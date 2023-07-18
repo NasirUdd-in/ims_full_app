@@ -1,6 +1,9 @@
 # inventory-management
 This is a inventory management system
 
+#How to get the projct? Simple!
+  git clone https://github.com/NasirUdd-in/ims_full_app.git
+
 #How to set up the project?
 
 1. Create Virtual Environment

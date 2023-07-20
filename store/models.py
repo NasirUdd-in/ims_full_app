@@ -1,6 +1,7 @@
 from django.db import models
 
 from users.models import User
+from decimal import Decimal 
 
 
 class Supplier(models.Model):
@@ -40,9 +41,11 @@ class Drop(models.Model):
         return self.name
 
 
+
 class Product(models.Model):
     name = models.CharField(max_length=120, unique=True)
     sortno = models.PositiveIntegerField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -66,12 +69,17 @@ class Order(models.Model):
     season = models.ForeignKey(Season, on_delete=models.CASCADE, null=True)
     drop = models.ForeignKey(Drop, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICE)
+    commission = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     created_date = models.DateField(auto_now_add=True)
 
 
     def __str__(self):
         return self.product.name
 
+    def save(self, *args, **kwargs):
+        if not self.commission:
+            self.commission = self.product.price * Decimal('0.05')  # Calculate 5% commission
+        super().save(*args, **kwargs)
 
 class Delivery(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)

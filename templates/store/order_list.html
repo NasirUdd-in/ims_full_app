@@ -44,12 +44,14 @@
                                 <th class="serial">#</th>
                                 <th>Supplier</th>
                                 <th>Product</th>
-                                <th>Design</th>
-                                <th>Color</th>
+                                {% comment %} <th>Design</th> {% endcomment %}
+                                {% comment %} <th>Color</th> {% endcomment %}
                                 <th>Buyer</th>
                                 <th>Season</th>
                                 <th>Category</th>
+                                <th>Commission</th>
                                 <th>Date</th>
+                                <th>Invoice</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -60,12 +62,22 @@
                                 <td class="serial">{{ forloop.counter }}</td>
                                 <td>{{ order.supplier }}</td>
                                 <td>{{ order.product }}</td>
-                                <td>{{ order.design }}</td>
-                                <td>{{ order.color }}</td>
+                                {% comment %} <td>{{ order.design }}</td> {% endcomment %}
+                                {% comment %} <td>{{ order.color }}</td> {% endcomment %}
                                 <td>{{ order.buyer }}</td>
                                 <td>{{ order.season }}</td>
                                 <td>{{ order.drop }}</td>
+                                <td>{{ order.commission }}</td>
                                 <td>{{ order.created_date }}</td>
+                               
+                                <td>
+                                    {% if order.status == 'complete' %}
+                                    <button class="btn btn-success" onclick="window.location.href='{% url 'list' order.id %}'">Generate PDF</button>
+                                    {% else %}
+                                        <a class="btn btn-info" href="">Wait</a>
+                                {% endif %}
+                                </td>
+                                
                                 <td>
                                     {% if order.status == 'pending' %}
                                         <a class="btn btn-warning" href="">{{ order.status }}</a>
@@ -81,6 +93,7 @@
                                         <a class="btn btn-info" href="">{{ order.status }}</a>
                                     {% endif %}
                                 </td>
+                                
                             </tr>
                             {% endfor %}
                             {% else %}

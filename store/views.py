@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
-
+from django.views.generic import View
 from users.models import User
 from .models import (
     Supplier,
@@ -21,6 +21,17 @@ from .forms import (
     OrderForm,
     DeliveryForm
 )
+
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
 
 # Supplier views
 @login_required(login_url='login')
@@ -119,7 +130,7 @@ class DropListView(ListView):
     model = Drop
     template_name = 'store/category_list.html'
     context_object_name = 'drop'
-
+   
 
 # Product views
 @login_required(login_url='login')
@@ -202,3 +213,44 @@ class DeliveryListView(ListView):
     model = Delivery
     template_name = 'store/delivery_list.html'
     context_object_name = 'delivery'
+
+def render_to_pdf(template_src, context_dict={},  pdf_name='document.pdf'):
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="{pdf_name}"'
+    pdf_status = pisa.CreatePDF(html, dest=response)
+
+    if pdf_status.err:
+        return HttpResponse('Some errors were encountered <pre>' + html + '</pre>')
+
+    return response
+
+# def ResultList(request, order_id):
+#     template_name = "invoice_template.html"
+#     order = Order.objects.get(id=order_id)
+
+#     return render_to_pdf(
+#         template_name,
+#         {
+#             "order": order,
+#             # "order_items": order.orderitem_set.all(),  # Assuming you have a related model called 'OrderItem'
+#         },
+#     )
+def ResultList(request, order_id):
+    template_name = "invoice_template.html"
+    records = Order.objects.get(id=order_id)
+
+    return render_to_pdf(
+        template_name,
+        {
+            "record": records,
+        },
+    )
+
+  # Replace 'myapp' with the actual name of your app
+
+def filter_categories_by_date(request):
+    filtered_categories = Drop.objects.order_by('-date_field')
+    # You can apply additional filtering based on your requirements here.
+    return render(request, 'category_list.html', {'filtered_categories': filtered_categories})

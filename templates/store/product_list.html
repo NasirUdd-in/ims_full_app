@@ -35,15 +35,18 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="box-title">Product List </h4>
+                <button id="load-normal" class="btn btn-warning">Sort by Date(New)</button>
+                <button id="load-filtered" class="btn btn-warning">Sort by Date(old)</button>
             </div>
             <div class="card-body--">
                 <div class="table-stats order-table ov-h">
-                    <table class="table ">
+                    <table class="table " id="productTable">
                         <thead>
                             <tr>
                                 <th class="serial">#</th>
                                 <th>Name</th>
                                 <th>Sort No</th>
+                                <th>Price</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
@@ -54,6 +57,7 @@
                                 <td class="serial">{{ forloop.counter }}</td>
                                 <td>{{ product.name }}</td>
                                 <td>{{ product.sortno }}</td>
+                                <td>{{ product.price }}</td>
                                 <td>{{ product.created_date }}</td>
                             </tr>
                             {% endfor %}
@@ -69,4 +73,46 @@
 
     
 </div>
+<script>
+    function fetchProducts(url) {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Update the table with the fetched products
+                const productTable = document.getElementById('productTable');
+                const tableBody = productTable.getElementsByTagName('tbody')[0];
+                tableBody.innerHTML = ''; // Clear previous product items
+                data.forEach((product, index) => {
+                    const row = tableBody.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    const cell3 = row.insertCell(2);
+                    const cell4 = row.insertCell(3);
+                    const cell5 = row.insertCell(4);
+                    cell1.textContent = index + 1;
+                    cell2.textContent = product.name;
+                    cell3.textContent = product.sortno;
+                    cell4.textContent = product.price;
+                    cell5.textContent = product.created_date;
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const loadNormalButton = document.getElementById('load-normal');
+        const loadFilteredButton = document.getElementById('load-filtered');
+
+        loadNormalButton.addEventListener('click', function () {
+            // Fetch and display normal product data when the "Load Normal Product Data" button is clicked
+            fetchProducts('/store/api/product/');
+        });
+
+        loadFilteredButton.addEventListener('click', function () {
+            // Fetch and display filtered product data when the "Load Filtered Product Data" button is clicked
+            fetchProducts('/store/api/product/filtered/');
+        });
+    });
+</script>
+
 {% endblock content %}

@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <style>
+            * {
+                font-size: 15px;
+            }
+
+            table {
+                table-layout: fixed;
+                width: 100%;
+                border: 1px solid black;
+            }
+
+            table th {
+                text-align: left;
+                padding: 3px;
+                padding-bottom: 0;
+            }
+
+            table td {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding: 3px;
+                padding-bottom: 0;
+            }
+            h1 { font: bold 100% sans-serif; letter-spacing: 0.5em; text-align: center; text-transform: uppercase; }
+
+        </style>
+    </head>
+
+    <body>
+
+        <h1>Invoice</h1>
+			<address contenteditable>
+				<p>{{ record.supplier }}</p>
+				<p>{{ record.created_date }}</p>
+				
+        <table>
+            <tr>
+                <th> supplier  </th>
+                <td style="width: 30%;"> {{ record.supplier }} </td>
+            </tr>
+            <tr>
+                <th> Product </th>
+                <td style="width: 30%;"> {{ record.product }} </td>
+            </tr>
+            <tr>
+                <th> Color </th>
+                <td style="width: 30%;"> {{ record.color }} </td>
+            </tr>
+            <tr>
+                <th> Buyer</th>
+                <td style="width: 30%;"> {{ record.buyer }} </td>
+            </tr>
+            <tr>
+                <th> Season </th>
+                <td style="width: 30%;"> {{ record.season }}</td>
+            </tr>
+            <tr>
+                <th> Drop </th>
+                <td style="width: 30%;"> {{record.drop}} </td>
+            </tr>
+          
+            
+        </table>
+    </body>
+</html>

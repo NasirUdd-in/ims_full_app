@@ -13,8 +13,24 @@ from rest_framework.response import Response
 # from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+import pdfkit
 
+from django.http import HttpResponse
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from io import BytesIO
 
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 # supplier start
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -155,12 +171,17 @@ def season_delete(request, pk):
 
 # drop start
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def drop_list(request):
     drop = Drop.objects.all()
     serializer = DropSerializer(drop, many=True)
     return Response(serializer.data)
-
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def filtered_drop_list(request):
+    drop = Drop.objects.all().order_by('-created_date')
+    serializer = DropSerializer(drop, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -202,12 +223,17 @@ def drop_delete(request, pk):
 
 # drop start
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def product_list(request):
     product = Product.objects.all()
     serializer = ProductSerializer(product, many=True)
     return Response(serializer.data)
-
+@api_view(['GET'])
+# @permission_classes([IsAuthenticated])
+def filtered_product_list(request):
+    drop = Product.objects.all().order_by('-created_date')
+    serializer = ProductSerializer(drop, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -335,3 +361,38 @@ def delivery_delete(request, pk):
     info = Delivery.objects.get(pk=pk)
     info.delete()
     return Response(status=204)
+
+
+# def render_to_pdf(template_src, context_dict={},  pdf_name='document.pdf'):
+#     template = get_template(template_src)
+#     html = template.render(context_dict)
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = f'attachment; filename="{pdf_name}"'
+#     pdf_status = pisa.CreatePDF(html, dest=response)
+
+#     if pdf_status.err:
+#         return HttpResponse('Some errors were encountered <pre>' + html + '</pre>')
+
+#     return response
+
+# def ResultList(request, order_id):
+#     template_name = "invoice_template.html"
+#     order = Order.objects.get(id=order_id)
+
+#     return render_to_pdf(
+#         template_name,
+#         {
+#             "order": order,
+#             # "order_items": order.orderitem_set.all(),  # Assuming you have a related model called 'OrderItem'
+#         },
+#     )
+# def ResultList(request, order_id):
+#     template_name = "invoice_template.html"
+#     records = Order.objects.get(id=order_id)
+
+#     return render_to_pdf(
+#         template_name,
+#         {
+#             "record": records,
+#         },
+#     )

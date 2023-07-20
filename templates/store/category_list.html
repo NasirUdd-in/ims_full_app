@@ -34,11 +34,13 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="box-title">Drop List </h4>
+                <h4 class="box-title">Category</h4>
+                <button id="load-normal" class="btn btn-warning">Sort by Date(New)</button>
+                <button id="load-filtered" class="btn btn-warning">Sort by Date(old)</button>
             </div>
             <div class="card-body--">
                 <div class="table-stats order-table ov-h">
-                    <table class="table ">
+                    <table class="table " id="categoryTable">
                         <thead>
                             <tr>
                                 <th class="serial">#</th>
@@ -67,4 +69,47 @@
 
     
 </div>
+<script>
+    function fetchDrops(url) {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // Update the table with the fetched drops
+                const dropTable = document.getElementById('categoryTable');
+                const tableBody = dropTable.getElementsByTagName('tbody')[0];
+                tableBody.innerHTML = ''; // Clear previous drop items
+                data.forEach((drop, index) => {
+                    const row = tableBody.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    const cell3 = row.insertCell(2);
+                    cell1.textContent = index + 1;
+                    cell2.textContent = drop.name;
+                    cell3.textContent = drop.created_date;
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        // Fetch and display normal drops on page load
+        fetchDrops('http://127.0.0.1:8000/store/api/drop/');
+
+        const loadNormalButton = document.getElementById('load-normal');
+        const loadFilteredButton = document.getElementById('load-filtered');
+
+        loadNormalButton.addEventListener('click', function () {
+            // Fetch and display normal drops when the "Load Normal Data" button is clicked
+            fetchDrops('http://127.0.0.1:8000/store/api/drop/');
+        });
+
+        loadFilteredButton.addEventListener('click', function () {
+            // Fetch and display filtered drops when the "Load Filtered Data" button is clicked
+            fetchDrops('http://127.0.0.1:8000/store/api/drop/filtered/');
+        });
+    });
+</script>
+
+
+
 {% endblock content %}

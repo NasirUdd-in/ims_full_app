@@ -112,6 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+PDFKIT_CONFIG = {
+    'WKHTMLTOPDF_PATH': '/Users/mac/Documents/project101/inventory_management_system_using_django/env/bin/wkhtmltopdf', # Replace with the path to your wkhtmltopdf executable
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

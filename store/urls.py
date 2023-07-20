@@ -16,8 +16,11 @@ from .views import (
     ProductListView,
     OrderListView,
     DeliveryListView,
+    render_to_pdf,
+    ResultList,
 )
 from . import newviews
+
 
 urlpatterns = [
     path('create-supplier/', create_supplier, name='create-supplier'),
@@ -62,12 +65,14 @@ urlpatterns = [
     path('api/drop/create/', newviews.drop_create, name='drop_create'),
     path('api/drop/update/<int:pk>/', newviews.drop_update, name='drop_update'),
     path('api/drop/delete/<int:pk>/', newviews.drop_delete, name='drop_delete'),
+    path('api/drop/filtered/', newviews.filtered_drop_list, name='filtered-drop-list'),
 
     path('api/product/', newviews.product_list, name='product_list'),
     path('api/product/<int:pk>/', newviews.product_detail, name='product_detail'),
     path('api/product/create/', newviews.product_create, name='product_create'),
     path('api/product/update/<int:pk>/', newviews.product_update, name='product_update'),
     path('api/product/delete/<int:pk>/', newviews.product_delete, name='product_delete'),
+    path('api/product/filtered/', newviews.filtered_product_list, name='filtered-product-list'),
 
     path('api/order/', newviews.order_list, name='order_list'),
     path('api/order/<int:pk>/', newviews.order_detail, name='order_detail'),
@@ -81,5 +86,8 @@ urlpatterns = [
     path('api/delivery/update/<int:pk>/', newviews.delivery_update, name='delivery_update'),
     path('api/delivery/delete/<int:pk>/', newviews.delivery_delete, name='delivery_delete'),
 
+    
+    path("order/list/<int:order_id>/", ResultList, name="list"),
+   
     
 ]

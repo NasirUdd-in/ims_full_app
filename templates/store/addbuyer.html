@@ -54,11 +54,11 @@
                                 <label for="email" class="control-label mb-1">Email Address</label>
                                 {{ form.email }}
                             </div>
-                            <div class="form-group">
+                            {% comment %} <div class="form-group">
                                 <label for="username" class="control-label mb-1">Username</label>
                                 {{ form.username }}
-                            </div>
-                            <div class="row">
+                            </div> {% endcomment %}
+                            {% comment %} <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="password" class="control-label mb-1">Password</label>
@@ -71,7 +71,7 @@
                                         {{ form.retype_password }}
                                     </div>
                                 </div>
-                            </div>
+                            </div> {% endcomment %}
                             <div>
                                 <button id="payment-button" type="submit" class="btn btn-lg btn-success btn-block">
                                     <span id="payment-button-amount">Save</span>

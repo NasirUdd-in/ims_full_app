@@ -31,13 +31,18 @@ from xhtml2pdf import pisa
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
+from rest_framework.pagination import PageNumberPagination
 # supplier start
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def supplier_list(request):
     suppliers = Supplier.objects.all()
-    serializer = SupplierSerializer(suppliers, many=True)
-    return Response(serializer.data)
+    paginator = PageNumberPagination()
+    paginated_queryset = paginator.paginate_queryset(suppliers, request)
+
+    serializer = SupplierSerializer(paginated_queryset, many=True)
+    # serializer = SupplierSerializer(suppliers, many=True)
+    return paginator.get_paginated_response(serializer.data)
 
 
 @api_view(['GET'])
@@ -244,7 +249,7 @@ def product_detail(request, pk):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def product_create(request):
     serializer = ProductSerializer(data=request.data)
     if serializer.is_valid():
@@ -254,7 +259,7 @@ def product_create(request):
 
 
 @api_view(['PUT'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def product_update(request, pk):
     info = Product.objects.get(pk=pk)
     serializer = ProductSerializer(info, data=request.data)
@@ -265,7 +270,7 @@ def product_update(request, pk):
 
 
 @api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def product_delete(request, pk):
     info = Product.objects.get(pk=pk)
     info.delete()
@@ -274,7 +279,7 @@ def product_delete(request, pk):
 
 # order start
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def order_list(request):
     order = Order.objects.all()
     serializer = OrderSerializer(order, many=True)

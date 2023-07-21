@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from django.contrib.auth.models import User
 from django.contrib.auth import logout
-
+from django.shortcuts import render
 
 # Register API
 @api_view(['POST'])
@@ -27,6 +27,8 @@ def register_view(request):
     return Response(serializer.errors, status=400)
 
 
+def registration_form(request):
+    return render(request, 'users/register.html')
 
 # @api_view(['POST'])
 # @permission_classes([IsAuthenticated])

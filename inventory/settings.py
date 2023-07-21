@@ -47,7 +47,10 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'drf_yasg'
 ]
-
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 4,  # Set the number of items to be displayed per page
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

@@ -6,6 +6,9 @@ import requests
 def report_view(request):
     return render(request, 'report/profit-loss.html')
 
+def balance_sheet(request):
+    return render(request, 'report/balance-sheet.html')
+
 def purchase_view(request):
     api_url = 'http://127.0.0.1:8000/rpt/api/purchase/'
 

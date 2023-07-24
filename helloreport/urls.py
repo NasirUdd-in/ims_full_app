@@ -6,6 +6,7 @@ from .  import viewsforapi
 urlpatterns = [
     # path('', views.dashboard, name='dashboard'),
     path('profit-loss/', views.report_view, name='profit-loss'),
+    path('balance-sheet/', views.balance_sheet, name='balance-sheet'),
     path('purchase/', views.purchase_view, name='purchase'),
     path('sales-view/', views.sales_view, name='sales_view'),
     path('products-view/', views.products_view, name='products_view'),

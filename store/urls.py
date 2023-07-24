@@ -88,6 +88,7 @@ urlpatterns = [
 
     
     path("order/list/<int:order_id>/", ResultList, name="list"),
+    
    
     
 ]

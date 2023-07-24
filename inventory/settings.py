@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # local
     'store.apps.StoreConfig',
     'users.apps.UsersConfig',
+    'helloreport.apps.HelloreportConfig',
     'rest_framework',
     'rest_framework_swagger',
     'drf_yasg'

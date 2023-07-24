@@ -264,3 +264,4 @@ def filter_categories_by_date(request):
     filtered_categories = Drop.objects.order_by('-date_field')
     # You can apply additional filtering based on your requirements here.
     return render(request, 'category_list.html', {'filtered_categories': filtered_categories})
+

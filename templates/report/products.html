@@ -1,0 +1,113 @@
+{% extends 'base/base.html' %} {% block title %} Add Buyer {% endblock title %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Report</a></li>
+              <li><a href="#">Profit-Loss</a></li>
+              <li class="active">Add</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+<div
+  class="position-absolute w-100 h-100 opacity-50 z-10 tbl-loading"
+  style="display: none"
+>
+  <div class="loader07"></div>
+</div>
+<div id="printMe" class="table-responsive table-custom mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Category</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Item Model</th>
+        <th>Unit</th>
+        <th>Selling Price</th>
+        {% comment %} <th>Status</th> {% endcomment %}
+        <th class="text-right no-print">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in data %}
+      <tr>
+        <td><span>{{product.id}}</span></td>
+        <td>
+          <a href="#" id="show-modal"
+            ><img
+              src="https://acculance.codeshaper.net/images/products/product-01.jpeg"
+              loading="lazy"
+              class="rounded preview-sm"
+          /></a>
+        </td>
+        <td><span>{{product.category}} </span></td>
+        <td>{{product.code}}</td>
+        <td>
+          <a href="/products/pentium-silver-n5030-15-6-hd-laptop" class="">
+            {{product.name}}
+          </a>
+        </td>
+        <td>{{product.item_model}}</td>
+        <td>{{product.unit}}</td>
+        <td>
+          {% comment %} <span><del>1000</del> $1045.00 (5%)</span> {% endcomment %}
+          <span>{{product.selling_price}}</span>
+        </td>
+        {% comment %} <td><span class="badge bg-success">Active</span></td> {% endcomment %}
+        <td class="text-right no-print">
+          <div class="btn-group">
+            <a
+              href="/products/pentium-silver-n5030-15-6-hd-laptop"
+              class="btn btn-primary btn-sm has-tooltip"
+              data-original-title="null"
+              ><i class="fas fa-eye"></i
+            ></a>
+            <a
+              href="/products/edit/pentium-silver-n5030-15-6-hd-laptop"
+              class="btn btn-info btn-sm has-tooltip"
+              data-original-title="null"
+              ><i class="fas fa-edit"></i
+            ></a>
+            <!---->
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+      <tr style="display: none">
+        <td colspan="10">
+          <div class="text-center py-8">
+            <img
+              src="/../../images/empty.png"
+              alt="result-not-found"
+              class="w-64 m-auto"
+            />
+            <p class="font-bold text-lg text-gray-600 dark:text-gray-200">
+              Sorry 😔 No data found.
+            </p>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,106 @@
+{% extends 'base/base.html' %} 
+{% block title %}Add Buyer{% endblock title %} 
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Buyer</a></li>
+              <li class="active">Add</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+<div
+  class="position-absolute w-100 h-100 opacity-50 z-10 tbl-loading"
+  style="display: none"
+>
+  <div class="loader07"></div>
+</div>
+<div id="printMe" class="table-responsive table-custom mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Supplier ID</th>
+        <th>Name</th>
+        <th>Contact Number</th>
+        <th>Email</th>
+        <th>Company Name</th>
+        <th>Status</th>
+        <th class="text-right no-print">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for supplier in data %}
+       <tr>
+        <td><span>{{ supplier.id }}</span></td>
+        <td>
+          <a href="#" id="show-modal"
+            ><img
+              src="https://acculance.codeshaper.net/images/suppliers/avatar.png"
+              loading="lazy"
+              class="rounded preview-sm"
+          /></a>
+        </td>
+        <td>{{ supplier.supplier_id }}</td>
+        <td>
+          <a href="/suppliers/yvonne-melendez" class=""> {{ supplier.name }} </a>
+        </td>
+        <td>{{ supplier.contact_number }}</td>
+        <td>{{ supplier.email }}</td>
+        <td>{{ supplier.company_name }}</td>
+        <td><span class="badge bg-success">{{ supplier.status }}</span></td>
+        <td class="text-right no-print">
+          <div class="btn-group">
+            <a
+              href="/suppliers/yvonne-melendez"
+              class="btn btn-primary btn-sm has-tooltip"
+              data-original-title="null"
+              ><i class="fas fa-eye"></i
+            ></a>
+            <a
+              href="/suppliers/edit/yvonne-melendez"
+              class="btn btn-info btn-sm has-tooltip"
+              data-original-title="null"
+              ><i class="fas fa-edit"></i
+            ></a>
+            <!---->
+          </div>
+        </td> 
+        
+      {% comment %} <tr style="display: none">
+        <td colspan="8">
+          <div class="text-center py-8">
+            <img
+              src="/../../images/empty.png"
+              alt="result-not-found"
+              class="w-64 m-auto"
+            />
+            <p class="font-bold text-lg text-gray-600 dark:text-gray-200">
+              Sorry 😔 No data found.
+            </p>
+          </div>
+        </td>
+      </tr> {% endcomment %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

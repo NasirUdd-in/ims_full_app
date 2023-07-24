@@ -1,0 +1,172 @@
+{% extends 'base/base.html' %} 
+{% block title %}
+Add Buyer
+{% endblock title %} 
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Report</a></li>
+              <li><a href="#">Profit-Loss</a></li>
+              <li class="active">Add</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+<div class="row">
+  <div class="col-lg-12">
+    <div class="form-group col-md-12">
+      <label for="reportType">Report Type</label>
+      <select id="reportType" class="form-control">
+        <option value="1">Gross Profit/Loss</option>
+        <option value="0">Net Profit/Loss</option>
+      </select>
+      <!---->
+    </div>
+    <div class="col-lg-12">
+      <div class="invoice p-3 mb-3">
+        <div class="m-auto invoice-col">
+          <div class="company-logo text-center">
+            <img
+              src="https://acculance.codeshaper.net/images/logo-black.png"
+              alt="Acculance"
+              class="lg-logo"
+            />
+            <address class="mt-2">
+              <strong
+                >Ultimate Sales, Inventory, Accounting Management System</strong
+              ><br />
+              <strong>Phone: </strong> 0170000000<br />
+              <strong>Email: </strong> support@codeshape.net<br />
+              <strong>Address: </strong>
+              Ground Floor, Road# 24, House# 339, New DOHS, Mohakhali, Dhaka -
+              1206, Bangladesh
+            </address>
+          </div>
+        </div>
+        <hr />
+        <div class="row mt-5 position-relative">
+          <div
+            class="position-absolute w-100 h-100 opacity-50 z-10 tbl-loading"
+            style="display: none"
+          >
+            <div class="loader07"></div>
+          </div>
+          <div class="table-responsive table-custom">
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Avg. Purchase Price</th>
+                  <th>Avg. Selling Price</th>
+                  <th>Sold Qty</th>
+                  <th class="text-right">
+                    <strong
+                      ><span class="green">Profit</span> /
+                      <span class="red">Loss</span></strong
+                    >
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>AP-000001</td>
+                  <td>Pentium Silver N5030 15.6"</td>
+                  <td>$874.02</td>
+                  <td>$950.00</td>
+                  <td>31</td>
+                  <td class="text-right">
+                    <strong><span class="green">2355.34</span></strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>AP-000002</td>
+                  <td>Celeron Silver N5030 15.6"</td>
+                  <td>$958.44</td>
+                  <td>$1200.00</td>
+                  <td>31</td>
+                  <td class="text-right">
+                    <strong><span class="green">7488.45</span></strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>AP-000003</td>
+                  <td>Inspiron 15 3510 Intel Celeron</td>
+                  <td>$1227.83</td>
+                  <td>$1500.00</td>
+                  <td>31</td>
+                  <td class="text-right">
+                    <strong><span class="green">8437.4</span></strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="5" class="text-right"><strong>Total</strong></td>
+                  <td><strong>93</strong></td>
+                  <td class="text-right"><strong>$18281.19</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-responsive table-custom">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th>Total Sales (Average)</th>
+                  <td></td>
+                  <td class="text-right"><strong>$113150.00</strong></td>
+                </tr>
+                <tr>
+                  <td colspan="3"></td>
+                </tr>
+                <tr>
+                  <th>Total Purchase (Average)</th>
+                  <td></td>
+                  <td class="text-right">
+                    <u><strong>($94868.99)</strong></u>
+                  </td>
+                </tr>
+                <tr class="green">
+                  <th><span>Profit</span></th>
+                  <td></td>
+                  <td class="text-right"><strong>$18281.19</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row no-print mt-5">
+          <div class="col-12">
+            <a href="/inventory" class="btn btn-dark float-right"
+              ><i class="fas fa-long-arrow-alt-left"></i> Back
+            </a>
+            <a href="#" class="btn btn-default"
+              ><i class="fas fa-print"></i> Print</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/.col-->
+</div>
+{% endblock content %}

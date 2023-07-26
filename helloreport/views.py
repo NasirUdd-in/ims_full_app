@@ -20,7 +20,14 @@ def purchase_view(request):
     return render(request, 'report/purchase.html', {'data': data})
 
 def sales_view(request):
-    return render(request, 'report/sales-view.html')
+    api_url = 'http://127.0.0.1:8000/rpt/api/sale/'
+
+    try:
+        response = requests.get(api_url)
+        data = response.json()
+    except requests.RequestException:
+        data = []
+    return render(request, 'report/sales-view.html', {'data': data})
 
 def products_view(request):
     api_url = 'http://127.0.0.1:8000/rpt/api/product/'

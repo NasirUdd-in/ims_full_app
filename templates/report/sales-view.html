@@ -42,28 +42,27 @@ Add Buyer
         <th>#</th>
         <th>Quotation No</th>
         <th>Quotation Date</th>
-        <th>Client</th>
+        <th>Customers</th>
+        <th>Product</th>
+        <th>Selling Price</th>
+        <th>Quantity</th>
         <th>Subtotal</th>
-        <th>Transport</th>
-        <th>Discount</th>
-        <th>Tax</th>
-        <th>Net Total</th>
         <th>Status</th>
         <th class="text-right no-print">Action</th>
       </tr>
     </thead>
     <tbody>
+      {% for sale in data%}
       <tr>
-        <td><span>1</span></td>
-        <td><a href="/quotations/626d32f19370e" class="">APQ-1 </a></td>
-        <td><span>23rd Jul, 2023</span></td>
-        <td>Troy Walker</td>
-        <td>$18725.00</td>
-        <td>$0</td>
-        <td>$0</td>
-        <td>$1872.50</td>
-        <td>$20597.50</td>
-        <td><span class="badge bg-success">Active</span></td>
+        <td><span>{{sale.id}}</span></td>
+        <td><a href="/quotations/626d32f19370e" class="">{{sale.quotation_no}} </a></td>
+        <td><span>{{sale.quotation_date}}</span></td>
+        <td>{{sale.customers.name}}</td>
+        <td>{{sale.product.name}}</td>
+        <td>{{sale.product.selling_price}}</td>
+        <td>{{sale.quantity}}</td>
+        <td>{{sale.subtotal}}</td>
+        <td><span class="badge bg-success">{{sale.status}}</span></td>
         <td class="text-right no-print">
           <div class="btn-group">
             <a
@@ -88,6 +87,7 @@ Add Buyer
           </div>
         </td>
       </tr>
+      {% endfor %}
       <tr style="display: none">
         <td colspan="11">
           <div class="text-center py-8">

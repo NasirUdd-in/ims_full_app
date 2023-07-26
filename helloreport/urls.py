@@ -35,5 +35,9 @@ urlpatterns = [
     path('api/purchase/', viewsforapi.purchase_list, name='purchase_list'),
     path('api/purchase/<int:pk>/',viewsforapi.purchase_detail, name='purchase_detail'),
     path('api/purchase/create/', viewsforapi.purchase_create, name='purchase_create'),
+
+    path('api/sale/', viewsforapi.sale_list, name='sale_list'),
+    path('api/sale/<int:pk>/',viewsforapi.sale_detail, name='sale_detail'),
+    path('api/sale/create/', viewsforapi.sale_create, name='sale_create'),
    
 ]

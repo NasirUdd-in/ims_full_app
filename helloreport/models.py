@@ -69,3 +69,22 @@ class Purchase(models.Model):
 
     def __str__(self):
         return str(self.purchase_no)
+
+class Sale(models.Model):
+    quotation_no = models.CharField(max_length=20)
+    quotation_date = models.DateField()
+    quantity = models.PositiveIntegerField()
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    status = models.CharField(max_length=20)
+
+    # Foreign keys to Client and Product models
+    customers = models.ForeignKey(Customers, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        # Calculate the subtotal before saving the Quotation instance
+        self.subtotal = self.quantity * self.product.selling_price
+        super(Sale, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.quotation_no} - {self.customers} - {self.product}"

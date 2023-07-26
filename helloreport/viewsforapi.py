@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
-from .models import Supplier,Customers, Product, Purchase
-from .serializers import SupplierSerializer,CustomerSerializer, ProductSerializer, PurchaseSerializer
+from .models import Supplier,Customers, Product, Purchase, Sale
+from .serializers import SupplierSerializer,CustomerSerializer, ProductSerializer, PurchaseSerializer, SaleSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -101,6 +101,29 @@ def purchase_detail(request, pk):
 @api_view(['POST'])
 def purchase_create(request):
     serializer = PurchaseSerializer(data=request.data, many=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    return Response(serializer.errors, status=400)
+
+# Purchase start
+@api_view(['GET'])
+def sale_list(request):
+    sale = Sale.objects.all()
+    serializer = SaleSerializer(sale, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def sale_detail(request, pk):
+    info = Sale.objects.get(pk=pk)
+    serializer = SaleSerializer(info)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def sale_create(request):
+    serializer = SaleSerializer(data=request.data, many=True)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)

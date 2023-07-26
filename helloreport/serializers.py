@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Supplier, Customers,Product, Purchase
+from .models import Supplier, Customers,Product, Purchase, Sale
 from rest_framework.permissions import IsAuthenticated
 from django.db import models
 from django.contrib.auth.models import User
@@ -27,4 +27,12 @@ class PurchaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Purchase
+        fields = '__all__'
+
+class SaleSerializer(serializers.ModelSerializer):
+    customers = CustomerSerializer()
+    product = ProductSerializer()
+
+    class Meta:
+        model = Sale
         fields = '__all__'

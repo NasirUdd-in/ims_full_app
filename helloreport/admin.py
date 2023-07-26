@@ -3,10 +3,12 @@ from .models import (
     Supplier,
     Customers,
     Product,
-    Purchase
+    Purchase,
+    Sale
 )
 # Register your models here.
 admin.site.register(Supplier)
 admin.site.register(Customers)
 admin.site.register(Product)
 admin.site.register(Purchase)
+admin.site.register(Sale)

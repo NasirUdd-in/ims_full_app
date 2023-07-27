@@ -19,7 +19,18 @@ class Supplier(models.Model):
     def __str__(self):
         return self.name
 
+class AddSupplier(models.Model):
+    image = models.ImageField(upload_to='supplier_images', blank=True, null=True)
+    supplier_id = models.CharField(max_length=20, unique=True)
+    name = models.CharField(max_length=100)
+    contact_number = models.CharField(max_length=20)
+    email = models.EmailField(max_length=100)
+    company_name = models.CharField(max_length=100)
+    status = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.name
+        
 class Customers(models.Model):
     supplier_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=100)

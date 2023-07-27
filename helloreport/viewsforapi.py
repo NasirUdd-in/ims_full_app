@@ -128,3 +128,10 @@ def sale_create(request):
         serializer.save()
         return Response(serializer.data, status=201)
     return Response(serializer.errors, status=400)
+
+# Purchase start
+# @api_view(['GET'])
+# def report_profit(request):
+#     sale = Product.objects.all()
+#     serializer = ProductWithAvgPurchasePriceSerializer(sale, many=True)
+#     return Response(serializer.data)

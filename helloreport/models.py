@@ -1,5 +1,8 @@
 from django.db import models
 import uuid
+from decimal import Decimal
+from django.db.models import Avg, Sum
+
 
 class Supplier(models.Model):
     supplier_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
@@ -40,7 +43,7 @@ class Product(models.Model):
     item_model = models.CharField(max_length=100)
     unit = models.CharField(max_length=50)
     selling_price = models.DecimalField(max_digits=10, decimal_places=2)
-
+    
     def __str__(self):
         return self.name
 
@@ -54,7 +57,7 @@ class Purchase(models.Model):
     subtotal = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     total_paid = models.DecimalField(max_digits=10, decimal_places=2)
     total_due = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    
+      
     status_choices = (
         ('pending', 'Pending'),
         ('completed', 'Completed'),
@@ -69,6 +72,10 @@ class Purchase(models.Model):
 
     def __str__(self):
         return str(self.purchase_no)
+    
+    def avg_purchase_price(self):
+        return Purchase.objects.filter(product=self.product).aggregate(avg_purchase_price=Avg('purchase_price'))['avg_purchase_price']
+    
 
 class Sale(models.Model):
     quotation_no = models.CharField(max_length=20)

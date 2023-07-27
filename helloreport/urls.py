@@ -39,5 +39,7 @@ urlpatterns = [
     path('api/sale/', viewsforapi.sale_list, name='sale_list'),
     path('api/sale/<int:pk>/',viewsforapi.sale_detail, name='sale_detail'),
     path('api/sale/create/', viewsforapi.sale_create, name='sale_create'),
+
+    # path('api/report/profit/', viewsforapi.report_profit, name='report_profit'),
    
 ]

@@ -100,7 +100,7 @@ def purchase_detail(request, pk):
 
 @api_view(['POST'])
 def purchase_create(request):
-    serializer = PurchaseSerializer(data=request.data, many=True)
+    serializer = PurchaseSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=201)

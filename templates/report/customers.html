@@ -67,7 +67,7 @@
         <td><span class="badge bg-success">{{customer.status}}</span></td>
         <td class="text-right no-print">
           <div class="btn-group">
-            <a
+            {% comment %} <a
               href="/clients/troy-walker"
               class="btn btn-primary btn-sm has-tooltip"
               data-original-title="null"
@@ -78,7 +78,17 @@
               class="btn btn-info btn-sm has-tooltip"
               data-original-title="null"
               ><i class="fas fa-edit">Update</i
-            ></a>
+            ></a> {% endcomment %}
+            <form action="{% url 'delete_item' customer.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit"  class="btn btn-primary btn-sm has-tooltip"><i class="fas fa-eye"></i>Delete</button>
+            </form>
+            <a
+              href="{% url 'update_suppliers' customer.id %}"
+              class="btn btn-info btn-sm has-tooltip"
+              data-original-title="null"
+              ><i class="fas fa-edit"></i
+            >Update</a>
             <!---->
           </div>
         </td>

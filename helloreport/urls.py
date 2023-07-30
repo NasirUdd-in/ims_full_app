@@ -15,6 +15,15 @@ urlpatterns = [
     path('account-view/', views.account_view, name='account_view'),
     path('balance-adjustment-view/', views.balance_adjustment_view, name='balance_adjustment_view'),
     path('balance-transfer-view/', views.balance_transfer_view, name='balance_transfer_view'),
+
+    path('add-suppliers/', views.add_suppliers, name='add_suppliers'),
+    path('api/filtered_supplier/', viewsforapi.filtered_suppliers_view, name='filtered_suppliers'),
+    path('update-suppliers/<int:supplier_id>/', views.update_suppliers, name='update_suppliers'),
+
+    path('add-customers/', views.add_customers, name='add_customers'),
+    path('add-products/', views.add_products, name='add_products'),
+    path('add-purchases/', views.add_purchases, name='add_purchases'),
+    path('add-sells/', views.add_sells, name='add_sells'),
    
    
 
@@ -22,7 +31,7 @@ urlpatterns = [
     path('api/supplier/', viewsforapi.supplier_list, name='supplier_list'),
     path('api/supplier/<int:pk>/',viewsforapi.supplier_detail, name='supplier_detail'),
     path('api/supplier/create/', viewsforapi.supplier_create, name='supplier_create'),
-
+    path('delete-item/<int:item_id>/', viewsforapi.delete_item, name='delete_item'),
      #serializer
     path('api/customer/', viewsforapi.customer_list, name='customer_list'),
     path('api/customer/<int:pk>/',viewsforapi.customer_detail, name='customer_detail'),
@@ -40,6 +49,11 @@ urlpatterns = [
     path('api/sale/<int:pk>/',viewsforapi.sale_detail, name='sale_detail'),
     path('api/sale/create/', viewsforapi.sale_create, name='sale_create'),
 
+    #  path('api/profitreport/', viewsforapi.overall_profit, name='overall_profit'),
+
     # path('api/report/profit/', viewsforapi.report_profit, name='report_profit'),
+    # path('api/profit/', viewsforapi.profit_api, name='profit-api'),
+    # path('api/purchaseslist/',viewsforapi.purchaselist, name='purchaselist'),
+     path('api/sale-report/', viewsforapi.salelist, name='salelist'),
    
 ]

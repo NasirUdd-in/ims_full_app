@@ -4,6 +4,7 @@ from decimal import Decimal
 from django.db.models import Avg, Sum
 
 
+
 class Supplier(models.Model):
     supplier_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=100)
@@ -19,17 +20,6 @@ class Supplier(models.Model):
     def __str__(self):
         return self.name
 
-class AddSupplier(models.Model):
-    image = models.ImageField(upload_to='supplier_images', blank=True, null=True)
-    supplier_id = models.CharField(max_length=20, unique=True)
-    name = models.CharField(max_length=100)
-    contact_number = models.CharField(max_length=20)
-    email = models.EmailField(max_length=100)
-    company_name = models.CharField(max_length=100)
-    status = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.name
         
 class Customers(models.Model):
     supplier_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
@@ -84,8 +74,7 @@ class Purchase(models.Model):
     def __str__(self):
         return str(self.purchase_no)
     
-    def avg_purchase_price(self):
-        return Purchase.objects.filter(product=self.product).aggregate(avg_purchase_price=Avg('purchase_price'))['avg_purchase_price']
+    
     
 
 class Sale(models.Model):
@@ -97,7 +86,7 @@ class Sale(models.Model):
 
     # Foreign keys to Client and Product models
     customers = models.ForeignKey(Customers, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE) 
 
     def save(self, *args, **kwargs):
         # Calculate the subtotal before saving the Quotation instance
@@ -106,3 +95,23 @@ class Sale(models.Model):
 
     def __str__(self):
         return f"{self.quotation_no} - {self.customers} - {self.product}"
+
+
+# class ProfitReport(models.Model):
+#     # Custom model for the profit report
+#     total_purchase_subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+#     total_sale_subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+#     profit = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+#     @classmethod
+#     def calculate_profit(cls):
+#         # Calculate the total purchase subtotal
+#         total_purchase_subtotal = Purchase.objects.aggregate(total_purchase_subtotal=Sum('subtotal'))['total_purchase_subtotal'] or 0
+
+#         # Calculate the total sale subtotal
+#         total_sale_subtotal = Sale.objects.aggregate(total_sale_subtotal=Sum('subtotal'))['total_sale_subtotal'] or 0
+
+#         # Calculate the profit
+#         profit = total_sale_subtotal - total_purchase_subtotal
+
+#         return total_purchase_subtotal, total_sale_subtotal, profit

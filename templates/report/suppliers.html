@@ -16,8 +16,8 @@
           <div class="page-title">
             <ol class="breadcrumb text-right">
               <li><a href="#">Dashboard</a></li>
-              <li><a href="#">Buyer</a></li>
-              <li class="active">Add</li>
+              <li><a href="#">Suppliers</a></li>
+              <li class="active">View</li>
             </ol>
           </div>
         </div>
@@ -26,6 +26,7 @@
   </div>
 </div>
 {% endblock breadcrumbs %} {% block content %}
+
 <div
   class="position-absolute w-100 h-100 opacity-50 z-10 tbl-loading"
   style="display: none"
@@ -47,6 +48,19 @@
         <th class="text-right no-print">Action</th>
       </tr>
     </thead>
+    <form action="{% url 'filtered_suppliers' %}" method="GET">
+      <label for="name">Filter by Name:</label>
+      <div class="input-group mb-3 w-2" style="width: 300px;">
+        
+      
+      <input type="text" id="name" name="name" class="form-control" >
+      
+      <div class="input-group-prepend">
+      <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-search" aria-hidden="true"></i>
+        Search</button>
+    </div>
+  </div>
+  </form>
     <tbody>
       {% for supplier in data %}
        <tr>
@@ -69,18 +83,18 @@
         <td><span class="badge bg-success">{{ supplier.status }}</span></td>
         <td class="text-right no-print">
           <div class="btn-group">
+            
+            <form action="{% url 'delete_item' supplier.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit"  class="btn btn-primary btn-sm has-tooltip"><i class="fas fa-eye"></i>Delete</button>
+            </form>
             <a
-              href="/suppliers/yvonne-melendez"
-              class="btn btn-primary btn-sm has-tooltip"
-              data-original-title="null"
-              ><i class="fas fa-eye"></i
-            ></a>
-            <a
-              href="/suppliers/edit/yvonne-melendez"
+              href="{% url 'update_suppliers' supplier.id %}"
               class="btn btn-info btn-sm has-tooltip"
               data-original-title="null"
               ><i class="fas fa-edit"></i
-            ></a>
+            >Update</a>
+            
             <!---->
           </div>
         </td> 
@@ -102,5 +116,6 @@
       {% endfor %}
     </tbody>
   </table>
+  
 </div>
 {% endblock content %}

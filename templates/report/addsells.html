@@ -1,0 +1,418 @@
+{% extends 'base/base.html' %} 
+{% block title %}Add Buyer{% endblock title %}
+ {% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Sells</a></li>
+              <li class="active">Add</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+<div data-v-3c5d506e="" class="col-lg-12 col-xl-12">
+  <div data-v-3c5d506e="" class="card">
+    <div data-v-3c5d506e="" class="card-header">
+      <h3 data-v-3c5d506e="" class="card-title">Create quotation</h3>
+      <a
+        data-v-3c5d506e=""
+        href="/quotations"
+        class="btn btn-dark float-right router-link-active"
+        ><i data-v-3c5d506e="" class="fas fa-long-arrow-alt-left"></i> Back
+      </a>
+    </div>
+    <form data-v-3c5d506e="" role="form">
+      <div data-v-3c5d506e="" class="card-body">
+        <div data-v-3c5d506e="" class="row">
+          <div data-v-3c5d506e="" class="form-group col-md-6">
+            <label data-v-3c5d506e="" for="client"
+              >Client <span data-v-3c5d506e="" class="required">*</span></label
+            >
+            <div
+              data-v-3c5d506e=""
+              dir="auto"
+              class="v-select vs--single vs--searchable"
+              name="client"
+            >
+              <div
+                id="vs8__combobox"
+                role="combobox"
+                aria-expanded="false"
+                aria-owns="vs8__listbox"
+                aria-label="Search for option"
+                class="vs__dropdown-toggle"
+              >
+                <div class="vs__selected-options">
+                  <span class="vs__selected">
+                    Walking Customer
+                    <!----></span
+                  >
+                  <input
+                    aria-autocomplete="list"
+                    aria-labelledby="vs8__combobox"
+                    aria-controls="vs8__listbox"
+                    type="search"
+                    autocomplete="off"
+                    class="vs__search"
+                  />
+                </div>
+                <div class="vs__actions">
+                  <button
+                    type="button"
+                    title="Clear Selected"
+                    aria-label="Clear Selected"
+                    class="vs__clear"
+                    style=""
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                    >
+                      <path
+                        d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"
+                      ></path>
+                    </svg>
+                  </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="10"
+                    role="presentation"
+                    class="vs__open-indicator"
+                  >
+                    <path
+                      d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"
+                    ></path>
+                  </svg>
+                  <div class="vs__spinner" style="display: none">
+                    Loading...
+                  </div>
+                </div>
+              </div>
+              <ul
+                id="vs8__listbox"
+                role="listbox"
+                style="display: none; visibility: hidden"
+              ></ul>
+            </div>
+            <!---->
+          </div>
+          <div data-v-3c5d506e="" class="form-group col-md-6">
+            <label data-v-3c5d506e="" for="reference">Reference</label>
+            <input
+              data-v-3c5d506e=""
+              id="reference"
+              type="text"
+              name="reference"
+              placeholder="Enter reference"
+              class="form-control"
+            />
+            <!---->
+          </div>
+        </div>
+        <div data-v-3c5d506e="" class="row">
+          <div data-v-3c5d506e="" class="form-group col-md-12">
+            <label data-v-3c5d506e="" for="product"
+              >Select Products
+              <span data-v-3c5d506e="" class="required">*</span></label
+            >
+            <div
+              data-v-3c5d506e=""
+              dir="auto"
+              class="v-select vs--single vs--searchable"
+              name="product"
+            >
+              <div
+                id="vs9__combobox"
+                role="combobox"
+                aria-expanded="false"
+                aria-owns="vs9__listbox"
+                aria-label="Search for option"
+                class="vs__dropdown-toggle"
+              >
+                <div class="vs__selected-options">
+                  <input
+                    placeholder="Search products"
+                    aria-autocomplete="list"
+                    aria-labelledby="vs9__combobox"
+                    aria-controls="vs9__listbox"
+                    type="search"
+                    autocomplete="off"
+                    class="vs__search"
+                  />
+                </div>
+                <div class="vs__actions">
+                  <button
+                    type="button"
+                    title="Clear Selected"
+                    aria-label="Clear Selected"
+                    class="vs__clear"
+                    style="display: none"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                    >
+                      <path
+                        d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"
+                      ></path>
+                    </svg>
+                  </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="10"
+                    role="presentation"
+                    class="vs__open-indicator"
+                  >
+                    <path
+                      d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"
+                    ></path>
+                  </svg>
+                  <div class="vs__spinner" style="display: none">
+                    Loading...
+                  </div>
+                </div>
+              </div>
+              <ul
+                id="vs9__listbox"
+                role="listbox"
+                style="display: none; visibility: hidden"
+              ></ul>
+            </div>
+            <!---->
+          </div>
+        </div>
+        <!---->
+        <div data-v-3c5d506e="" class="row">
+          <div data-v-3c5d506e="" class="form-group col-md-4">
+            <label data-v-3c5d506e="" for="discountType">Discount Type</label>
+            <select
+              data-v-3c5d506e=""
+              id="discountType"
+              step="any"
+              name="discountType"
+              class="form-control"
+            >
+              <option data-v-3c5d506e="" value="0">Fixed</option>
+              <option data-v-3c5d506e="" value="1">Percentage(%)</option>
+            </select>
+            <!---->
+          </div>
+          <div data-v-3c5d506e="" class="form-group col-md-4">
+            <label data-v-3c5d506e="" for="discount"
+              >Discount
+              <!----></label
+            >
+            <input
+              data-v-3c5d506e=""
+              id="discount"
+              type="number"
+              step="any"
+              min="1"
+              max="0"
+              name="discount"
+              placeholder="Enter discount"
+              class="form-control"
+            />
+            <!---->
+          </div>
+          <!---->
+          <div data-v-3c5d506e="" class="form-group col-md-4">
+            <label data-v-3c5d506e="" for="transportCost">Transport Cost</label>
+            <input
+              data-v-3c5d506e=""
+              id="transportCost"
+              type="number"
+              step="any"
+              min="1"
+              name="transportCost"
+              placeholder="Enter transport cost"
+              class="form-control"
+            />
+            <!---->
+          </div>
+        </div>
+        <div data-v-3c5d506e="" class="row">
+          <div data-v-3c5d506e="" class="form-group col-md-4">
+            <label data-v-3c5d506e="" for="orderTax"
+              >Quotation Tax
+              <span data-v-3c5d506e="" class="required">*</span></label
+            >
+            <div
+              data-v-3c5d506e=""
+              dir="auto"
+              class="v-select vs--single vs--searchable"
+              name="orderTax"
+            >
+              <div
+                id="vs10__combobox"
+                role="combobox"
+                aria-expanded="false"
+                aria-owns="vs10__listbox"
+                aria-label="Search for option"
+                class="vs__dropdown-toggle"
+              >
+                <div class="vs__selected-options">
+                  <span class="vs__selected">
+                    VAT@0
+                    <!----></span
+                  >
+                  <input
+                    aria-autocomplete="list"
+                    aria-labelledby="vs10__combobox"
+                    aria-controls="vs10__listbox"
+                    type="search"
+                    autocomplete="off"
+                    class="vs__search"
+                  />
+                </div>
+                <div class="vs__actions">
+                  <button
+                    type="button"
+                    title="Clear Selected"
+                    aria-label="Clear Selected"
+                    class="vs__clear"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                    >
+                      <path
+                        d="M6.895455 5l2.842897-2.842898c.348864-.348863.348864-.914488 0-1.263636L9.106534.261648c-.348864-.348864-.914489-.348864-1.263636 0L5 3.104545 2.157102.261648c-.348863-.348864-.914488-.348864-1.263636 0L.261648.893466c-.348864.348864-.348864.914489 0 1.263636L3.104545 5 .261648 7.842898c-.348864.348863-.348864.914488 0 1.263636l.631818.631818c.348864.348864.914773.348864 1.263636 0L5 6.895455l2.842898 2.842897c.348863.348864.914772.348864 1.263636 0l.631818-.631818c.348864-.348864.348864-.914489 0-1.263636L6.895455 5z"
+                      ></path>
+                    </svg>
+                  </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="10"
+                    role="presentation"
+                    class="vs__open-indicator"
+                  >
+                    <path
+                      d="M9.211364 7.59931l4.48338-4.867229c.407008-.441854.407008-1.158247 0-1.60046l-.73712-.80023c-.407008-.441854-1.066904-.441854-1.474243 0L7 5.198617 2.51662.33139c-.407008-.441853-1.066904-.441853-1.474243 0l-.737121.80023c-.407008.441854-.407008 1.158248 0 1.600461l4.48338 4.867228L7 10l2.211364-2.40069z"
+                    ></path>
+                  </svg>
+                  <div class="vs__spinner" style="display: none">
+                    Loading...
+                  </div>
+                </div>
+              </div>
+              <ul
+                id="vs10__listbox"
+                role="listbox"
+                style="display: none; visibility: hidden"
+              ></ul>
+            </div>
+            <!---->
+          </div>
+          <div data-v-3c5d506e="" class="form-group col-md-4">
+            <label data-v-3c5d506e="" for="totalTax">Total Tax</label>
+            <input
+              data-v-3c5d506e=""
+              id="totalTax"
+              type="text"
+              name="totalTax"
+              readonly="readonly"
+              class="form-control"
+            />
+            <!---->
+          </div>
+          <div data-v-3c5d506e="" class="form-group col-md-4">
+            <label data-v-3c5d506e="" for="netTotal">Net Total</label>
+            <input
+              data-v-3c5d506e=""
+              id="netTotal"
+              type="number"
+              step="any"
+              name="netTotal"
+              readonly="readonly"
+              class="form-control"
+            />
+            <!---->
+          </div>
+        </div>
+        <div data-v-3c5d506e="" class="row">
+          <div data-v-3c5d506e="" class="form-group col-md-4">
+            <label data-v-3c5d506e="" for="deliveryPlace">Delivery Place</label>
+            <input
+              data-v-3c5d506e=""
+              id="deliveryPlace"
+              type="text"
+              name="deliveryPlace"
+              placeholder="Enter a delivery place"
+              class="form-control"
+            />
+            <!---->
+          </div>
+          <div data-v-3c5d506e="" class="form-group col-md-4">
+            <label data-v-3c5d506e="" for="date">Date</label>
+            <input
+              data-v-3c5d506e=""
+              id="date"
+              type="date"
+              name="date"
+              class="form-control"
+            />
+            <!---->
+          </div>
+          <div data-v-3c5d506e="" class="form-group col-md-4">
+            <label data-v-3c5d506e="" for="status">Status</label>
+            <select data-v-3c5d506e="" id="status" class="form-control">
+              <option data-v-3c5d506e="" value="1">Active</option>
+              <option data-v-3c5d506e="" value="0">Inactive</option>
+            </select>
+            <!---->
+          </div>
+        </div>
+        <div data-v-3c5d506e="" class="form-group">
+          <label data-v-3c5d506e="" for="note">Note</label>
+          <textarea
+            data-v-3c5d506e=""
+            id="note"
+            placeholder="Write your note here!"
+            class="form-control"
+          ></textarea>
+          <!---->
+        </div>
+      </div>
+      <div data-v-3c5d506e="" class="card-footer">
+        <button
+          data-v-3c5d506e=""
+          type="submit"
+          class="btn btn btn-primary btn-primary"
+        >
+          <i data-v-3c5d506e="" class="fas fa-save"></i> Save
+        </button>
+        <button
+          data-v-3c5d506e=""
+          type="reset"
+          class="btn btn-secondary float-right"
+        >
+          <i data-v-3c5d506e="" class="fas fa-power-off"></i> Reset
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}

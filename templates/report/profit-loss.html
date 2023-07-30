@@ -19,7 +19,7 @@ Add Buyer
             <ol class="breadcrumb text-right">
               <li><a href="#">Report</a></li>
               <li><a href="#">Profit-Loss</a></li>
-              <li class="active">Add</li>
+              
             </ol>
           </div>
         </div>
@@ -31,11 +31,11 @@ Add Buyer
 <div class="row">
   <div class="col-lg-12">
     <div class="form-group col-md-12">
-      <label for="reportType">Report Type</label>
+      {% comment %} <label for="reportType">Report Type</label>
       <select id="reportType" class="form-control">
         <option value="1">Gross Profit/Loss</option>
         <option value="0">Net Profit/Loss</option>
-      </select>
+      </select> {% endcomment %}
       <!---->
     </div>
     <div class="col-lg-12">
@@ -54,12 +54,21 @@ Add Buyer
               <strong>Phone: </strong> 0170000000<br />
               <strong>Email: </strong> support@nasir.net<br />
               <strong>Address: </strong>
-              Ground Floor, Road# 24, House# 339, New DOHS, Mohakhali, Dhaka -
-              1206, Bangladesh
+              B-25, 4th Floor, Mannan Plaza Dhaka, 1229
             </address>
           </div>
         </div>
         <hr />
+        <form method="get" action="{% url 'salelist' %}">
+          <label for="start_date">Start Date:</label>
+          <input type="date" id="start_date" name="start_date">
+      
+          <label for="end_date">End Date:</label>
+          <input type="date" id="end_date" name="end_date">
+        
+          <button type="submit">Filter</button>
+        
+      </form>
         <div class="row mt-5 position-relative">
           <div
             class="position-absolute w-100 h-100 opacity-50 z-10 tbl-loading"
@@ -71,8 +80,8 @@ Add Buyer
             <table class="table table-sm">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Code</th>
+                  {% comment %} <th>#</th> {% endcomment %}
+                  {% comment %} <th>Code</th> {% endcomment %}
                   <th>Name</th>
                   <th>Avg. Purchase Price</th>
                   <th>Avg. Selling Price</th>
@@ -86,44 +95,28 @@ Add Buyer
                 </tr>
               </thead>
               <tbody>
+                {% for report in data.product_details%}
                 <tr>
-                  <td>1</td>
-                  <td>AP-000001</td>
-                  <td>Pentium Silver N5030 15.6"</td>
-                  <td>$874.02</td>
-                  <td>$950.00</td>
-                  <td>31</td>
+                  {% comment %} <td>1</td> {% endcomment %}
+                  {% comment %} <td>AP-000001</td> {% endcomment %}
+                  
+                  <td>{{report.product_name}}</td>
+                 
+                  <td>${{report.purchase_subtotal}}</td>
+                  <td>${{report.sell_subtotal}}</td>
+                  {% comment %} <td>{{report.sell_subtotal}}</td> {% endcomment %}
+                  <td>{{report.sell_quantity}}</td>
                   <td class="text-right">
-                    <strong><span class="green">2355.34</span></strong>
+                    <strong><span class="green"></span>{{report.difference}}</strong>
                   </td>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>AP-000002</td>
-                  <td>Celeron Silver N5030 15.6"</td>
-                  <td>$958.44</td>
-                  <td>$1200.00</td>
-                  <td>31</td>
-                  <td class="text-right">
-                    <strong><span class="green">7488.45</span></strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>AP-000003</td>
-                  <td>Inspiron 15 3510 Intel Celeron</td>
-                  <td>$1227.83</td>
-                  <td>$1500.00</td>
-                  <td>31</td>
-                  <td class="text-right">
-                    <strong><span class="green">8437.4</span></strong>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="5" class="text-right"><strong>Total</strong></td>
-                  <td><strong>93</strong></td>
-                  <td class="text-right"><strong>$18281.19</strong></td>
-                </tr>
+                {% endfor %}
+                
+                 <tr>
+                  <td colspan="3" class="text-right"><strong>Total</strong></td>
+                  <td><strong>{{data.total_sell_quantity}}</strong></td>
+                  <td class="text-right"><strong></strong></td>
+                </tr> 
               </tbody>
             </table>
           </div>
@@ -133,22 +126,22 @@ Add Buyer
                 <tr>
                   <th>Total Sales (Average)</th>
                   <td></td>
-                  <td class="text-right"><strong>$113150.00</strong></td>
+                  <td class="text-right"><strong>${{data.average_sell_subtotal}}</strong></td>
                 </tr>
                 <tr>
-                  <td colspan="3"></td>
+                  <td colspan="2"></td>
                 </tr>
                 <tr>
                   <th>Total Purchase (Average)</th>
                   <td></td>
                   <td class="text-right">
-                    <u><strong>($94868.99)</strong></u>
+                    <u><strong>{{data.average_purchase_subtotal}}</strong></u>
                   </td>
                 </tr>
                 <tr class="green">
                   <th><span>Profit</span></th>
                   <td></td>
-                  <td class="text-right"><strong>$18281.19</strong></td>
+                  <td class="text-right"><strong>{{data.total_difference}}</strong></td>
                 </tr>
               </tbody>
             </table>
@@ -156,12 +149,13 @@ Add Buyer
         </div>
         <div class="row no-print mt-5">
           <div class="col-12">
-            <a href="/inventory" class="btn btn-dark float-right"
+            {% comment %} <a href="/inventory" class="btn btn-dark float-right"
               ><i class="fas fa-long-arrow-alt-left"></i> Back
-            </a>
-            <a href="#" class="btn btn-default"
+            </a> {% endcomment %}
+            <button id="print-button" class="btn btn-info"> <i class="fa fa-print" ></i> Print</button>
+            {% comment %} <a href="#" class="btn btn-default"
               ><i class="fas fa-print"></i> Print</a
-            >
+            > {% endcomment %}
           </div>
         </div>
       </div>

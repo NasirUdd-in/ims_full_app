@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %} 
+{% block title %}Add Buyer{% endblock title %} 
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-4">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1>Dashboard</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="page-header float-right">
+          <div class="page-title">
+            <ol class="breadcrumb text-right">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Suppliers</a></li>
+              <li class="active">View</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock breadcrumbs %} {% block content %}
+
+
+  <!-- Your Bootstrap-based content here -->
+  <div class="container">
+    <h1>Edit Item</h1>
+    <form method="post"  class="my-4">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+
+{% endblock content %}
